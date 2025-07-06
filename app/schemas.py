@@ -13,7 +13,7 @@ class BookBase(BaseModel):
 
 class BookCreate(BookBase):
     pass
-  
+
 class BookUpdate(BaseModel):
     title: Optional[str] = Field(None, min_length=1, max_length=200)
     author: Optional[str] = Field(None, min_length=1, max_length=100)
