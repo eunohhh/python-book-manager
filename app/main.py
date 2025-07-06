@@ -57,9 +57,9 @@ def update_book(
     db: Session = Depends(get_db)
 ):
     # ISBN 중복 체크 (다른 책과 중복되면 안됨)
-    if book_update.isbn:
+    if book_update.isbn:  
         existing_book = crud.get_book_by_isbn(db, isbn=book_update.isbn)
-        if existing_book is not None and existing_book.id != book_id:
+        if existing_book is not None and getattr(existing_book, 'id', None) != book_id: 
             raise HTTPException(status_code=400, detail="이미 등록된 ISBN입니다")
     
     db_book = crud.update_book(db, book_id=book_id, book_update=book_update)
